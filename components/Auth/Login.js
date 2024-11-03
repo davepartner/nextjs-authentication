@@ -1,6 +1,5 @@
 import {useState} from 'react';
-
-
+import {router } from 'next/router'
 /**
  * Component for the user registration from
  * Handle form inpute, send data to API and handle response
@@ -33,7 +32,10 @@ export default function Login() {
         //parse the response from the server
         const data = await res.json();
         if (res.ok){
+            //login successful
             setMessage(data.message)
+            router.push('/dashboard'); //redirect to login if authenticated
+
         }else{
             setMessage(data.error || 'Login failed')
         }
