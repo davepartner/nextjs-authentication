@@ -1,5 +1,7 @@
 import {useState} from 'react';
 import {router } from 'next/router'
+import { Input } from 'shadcn-ui'
+import { Button } from 'shadcn-ui'
 /**
  * Component for the user registration from
  * Handle form inpute, send data to API and handle response
@@ -43,27 +45,37 @@ export default function Login() {
     };
 
     return(
-        <form onSubmit={handleRegister}>
+        <div className="max-w-md mx-auto mt-20 p-8 border round-lg shadow-lg bg-white">
+            <h2 className="text-2xl font-bold text-center mb-6">Login to your account</h2>
+        <form onSubmit={handleRegister} className="space-y-6">
             {/* Input field for email */}
-            <label>Email</label>
-            <input type="email"
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <Input type="email"
              placeholder="Email" 
              value={email} //bind the email state
              onChange={(e) => setEmail(e.target.value)} //update email state on change
               />
+              </div>
             {/* Input field for password */}
-            <input
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Password</label>
+           
+            <Input
             type="password"
             placeholder="password"
             value={password} //binding to the password state
             onChange={(e) => setPassword(e.target.value)} //update password state on change
             />
-
+            </div>
             {/* Submit button to login */}
-            <button type="submit">Register</button>
+
+            <Button type="submit" className="w-full mt-4 bg-blue-500 text-white hover:bg-blue-600">Register</Button>
             {/* Display success or error mesaage */}
             {message && <p>{message}</p>}
 
         </form>
+
+        </div>
     )
 }
